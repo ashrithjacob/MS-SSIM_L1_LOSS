@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # load image
 
     im = Image.open('lena.png')
-    gt = pil2tensor(im).cuda(0)
+    gt = pil2tensor(im)
     blur_levels = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
     noise_levels = [5, 10 ,20, 40, 80, 160]
     im1 = np.float32(im)
@@ -35,10 +35,10 @@ if __name__ == '__main__':
     loss_blur = []
     loss_noise = []
     for img in imgs:
-        img = pil2tensor(img).cuda(0)
+        img = pil2tensor(img)
         loss = LOSS(img, gt)
         loss_blur.append(loss)
     for img in imgs2:
-        img = pil2tensor(img).cuda(0)
+        img = pil2tensor(img)
         loss = LOSS(img, gt)
         loss_noise.append(loss)
